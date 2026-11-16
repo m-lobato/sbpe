@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+/build/
+/build/remote.bin
+/config.ini
+/remote.log
+/symbols.json
+
+/rectbinpack/*.o
+/rectbinpack/_rbp.cpp
+/rectbinpack/_rbp*.so

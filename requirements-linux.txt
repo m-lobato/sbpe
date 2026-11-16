@@ -1,0 +1,5 @@
+cffi==2.1.1
+setuptools==84.2.1
+Pillow==13.0.0
+protobuf==3.20.3
+pycparser==3.12
