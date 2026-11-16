@@ -32,7 +32,7 @@ For example:
 ```
 /path/to/sbpe/scripts/build-linux.sh
 ```
-Make a copy of config_template.ini, renaming the copy to config.ini.
+Make a copy of config_template.ini, renaming the copy to config.ini.  
 Inside config.ini, put the full path to the mvmmocilent binary into de field named "game"
 
 The script creates `.venv`, installs the exact Python package versions from
@@ -53,5 +53,5 @@ an older Protocol Buffers compiler and is incompatible with newer protobuf
 runtimes.
 
 
-##License
+## License
 All terms and licenses applicable to the original project apply to that project as well.
