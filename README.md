@@ -1,3 +1,4 @@
+Original project: https://github.com/atomizer/sbpe
 # StarBreak Plugin Engine (SBPE) for Linux
 
 This Linux-only fork adapts SBPE to the native Linux version of StarBreak.
