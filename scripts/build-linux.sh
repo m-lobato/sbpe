@@ -15,9 +15,9 @@ import platform
 import sys
 if sys.platform != "linux":
     raise SystemExit("SBPE Linux build must run on Linux")
-if sys.version_info[:2] != (3, 12):
+if sys.version_info[:2] != (3, 13):
     raise SystemExit(
-        "SBPE Linux build currently targets Python 3.12; found "
+        "SBPE Linux build currently targets Python 3.13; found "
         + sys.version.split()[0]
     )
 if platform.machine() != "x86_64":
@@ -46,7 +46,7 @@ fi
 "$VENV/bin/python" -c '
 import platform
 import sys
-if sys.version_info[:2] != (3, 12) or platform.machine() != "x86_64":
+if sys.version_info[:2] != (3, 13) or platform.machine() != "x86_64":
     raise SystemExit(
         ".venv uses a different Python version or architecture; "
         "remove it manually and rerun this script"

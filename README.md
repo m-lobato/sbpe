@@ -7,19 +7,20 @@ Currently tested on Ubuntu-based distributions.
 
 ### Linux build
 
-The Linux build is currently tested with CPython 3.12 on x86-64. Install the
-compiler, Python 3.12 development/venv files, SDL2 development files, and
+The Linux build script currently targets CPython 3.13 on x86-64; this version
+still needs to be validated on your system. Install the compiler, Python 3.13
+development/venv files, SDL2 development files, and
 `binutils` (for `nm`) using the package manager for your distribution:
 
 | Distribution | Packages |
 | --- | --- |
-| Debian/Ubuntu | `build-essential python3.12-dev python3.12-venv libsdl2-dev binutils` |
+| Debian/Ubuntu | `build-essential python3.13-dev python3.13-venv libsdl2-dev binutils` |
 | Fedora | `gcc gcc-c++ make python3-devel SDL2-devel binutils` |
 | Arch Linux | `base-devel python sdl2 binutils` |
 | openSUSE | `gcc gcc-c++ make python3-devel libSDL2-devel binutils` |
 
-If the distribution's default Python is not 3.12, install Python 3.12 and set
-`PYTHON` to its executable, for example `PYTHON=python3.12`.
+If the distribution's default Python is not 3.13, install Python 3.13 and set
+`PYTHON` to its executable, for example `PYTHON=python3.13`.
 
 From the project directory, run:
 
