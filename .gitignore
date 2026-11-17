@@ -11,3 +11,4 @@ __pycache__/
 /rectbinpack/*.o
 /rectbinpack/_rbp.cpp
 /rectbinpack/_rbp*.so
+/libs/subhook/subhook.o
