@@ -31,7 +31,8 @@ def build():
         readfile('cdefs/remote.c'),
         sources=EXTRA_SRC,
         libraries=LIBRARIES,
-        define_macros=[('SUBHOOK_STATIC', None)])
+        define_macros=[('SUBHOOK_STATIC', None)],
+        extra_compile_args=['-std=gnu17'])
     ffibuilder.compile(tmpdir='build', target=TARGET)
 
 
