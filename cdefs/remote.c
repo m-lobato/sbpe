@@ -14,6 +14,8 @@
 uint32_t kickstart(void);
 
 CFFI_DLLEXPORT int SDL_Init(uint32_t flags) {
+	int result = ((int(*)(uint32_t))dlsym(RTLD_NEXT, "SDL_Init"))(flags);
+	// Plugin startup may query SDL state, so initialize SDL first.
 	kickstart();
-	return ((int(*)(uint32_t))dlsym(RTLD_NEXT, "SDL_Init"))(flags);
+	return result;
 }

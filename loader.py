@@ -144,7 +144,7 @@ def launch(exepath):
     # start the game
     return subprocess.Popen(
         [exepath], stderr=subprocess.STDOUT,
-        stdout=subprocess.PIPE, cwd=os.path.dirname(exepath))
+        cwd=os.path.dirname(exepath))
 
 
 def runLoader(exepath=''):
@@ -270,13 +270,6 @@ def runLoader(exepath=''):
         gpop.kill()
 
     logging.info('game closed: code {}'.format(gpop.returncode))
-
-    # dump stdout
-    stdo = gpop.communicate()[0].decode()
-
-    if len(stdo) > 0:
-        logging.info('stdout:')
-        print(stdo)
 
     return True
 

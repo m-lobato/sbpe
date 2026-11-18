@@ -22,3 +22,14 @@ foo:
   %endif
   pop rbp
   ret
+
+global foo_frame
+
+foo_frame:
+  push rbp
+  mov rbp, rsp
+  lea rax, [rbp - 16]
+  mov dword [rax], 42
+  mov eax, [rax]
+  pop rbp
+  ret

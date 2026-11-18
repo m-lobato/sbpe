@@ -28,6 +28,17 @@ void foo_hooked_tr(void) {
   foo_tr();
 }
 
+#if defined(SUBHOOK_X86_64) && defined(SUBHOOK_UNIX)
+typedef int (FOO_CALL *foo_frame_func_t)(void);
+extern int FOO_CALL foo_frame(void);
+static foo_frame_func_t foo_frame_tr = NULL;
+static int foo_frame_result = 0;
+
+static void foo_frame_hooked(void) {
+  foo_frame_result = foo_frame_tr();
+}
+#endif
+
 int main() {
   puts("Testing initial install");
 
@@ -73,6 +84,36 @@ int main() {
     return EXIT_FAILURE;
   }
   foo();
+
+#if defined(SUBHOOK_X86_64) && defined(SUBHOOK_UNIX)
+  puts("Testing stack-relative displacement trampoline");
+  if (foo_frame() != 42) {
+    puts("Unhooked function returned an unexpected value");
+    return EXIT_FAILURE;
+  }
+
+  subhook_t foo_frame_hook = subhook_new((void *)foo_frame,
+                                         (void *)foo_frame_hooked,
+                                         SUBHOOK_64BIT_OFFSET);
+  if (foo_frame_hook == NULL || subhook_install(foo_frame_hook) < 0) {
+    puts("Frame hook install failed");
+    return EXIT_FAILURE;
+  }
+  foo_frame_tr = (foo_frame_func_t)subhook_get_trampoline(foo_frame_hook);
+  if (foo_frame_tr == NULL) {
+    puts("Failed to build frame trampoline");
+    return EXIT_FAILURE;
+  }
+  foo_frame();
+  if (foo_frame_result != 42) {
+    puts("Frame trampoline returned an unexpected value");
+    return EXIT_FAILURE;
+  }
+  if (subhook_remove(foo_frame_hook) < 0) {
+    puts("Frame hook remove failed");
+    return EXIT_FAILURE;
+  }
+#endif
 
   return EXIT_SUCCESS;
 }
